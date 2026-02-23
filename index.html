@@ -28,7 +28,7 @@
         TTER
       </h1>
       <section class="app-container">
-        <form id="calc-form" action=" /" method="get" class="box1">
+        <form id="calc-form" action=" /" method="get" class="input-box">
           <div class="select-currency-wrapper">
             <label for="currency-select">Currency</label>
             <select name="currency" id="currency-select">
@@ -38,8 +38,8 @@
             </select>
           </div>
           <div class="bill-wrapper">
-            <label for="bill-amount">Bill</label> <br />
-            <input id="bill-amount" type="text" />
+            <label for="bill-input">Bill</label> <br />
+            <input id="bill-input" class="bill-input" type="text" />
           </div>
           <div class="tip-wrapper">
             <p>Select Tip %</p>
@@ -50,12 +50,12 @@
             </div>
           </div>
           <div class="people-wrapper">
-            <label for="people-number">Number of People</label> <br />
-            <input id="people-number" type="text" />
+            <label for="people-input">Number of People</label> <br />
+            <input id="people-input" class="people-input" type="text" />
           </div>
         </form>
 
-        <div class="box2">
+        <div class="output-box">
           <div class="tip-amount-wrapper">
             <p>Tip Amount</p>
             <p>/ person</p>

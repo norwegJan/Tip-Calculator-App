@@ -42,7 +42,7 @@ picture {
   color: hsl(228, 45%, 44%);
 }
 
-/* ===== BASE STYLES ===== */
+/* ===== BASE STYLES / MOBILE ===== */
 
 main {
   margin-top: 4rem;
@@ -74,11 +74,55 @@ h1 {
   text-align: left;
   color: var(--green-900);
   background-color: white;
-  padding: 1.5rem;
+  padding: 1rem 2rem;
+  border-radius: 15px 15px 0 0;
 }
 
-.box1 {
+.input-box {
   margin-bottom: 1rem;
+  padding: rem;
+}
+
+.output-box {
+  background-color: var(--green-900);
+  color: white;
+  padding: 1.5rem;
+  border-radius: 15px;
+}
+
+select {
+  font-family: Space Mono;
+  color: var(--green-900);
+}
+
+.select-currency-wrapper,
+.bill-wrapper,
+.tip-wrapper,
+.people-wrapper {
+  margin-bottom: 1rem;
+}
+
+.tip-btns {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.tip-btns button {
+  font-family: Space Mono;
+  font-size: 1.5rem;
+  padding: 0.5rem 1rem;
+  border: none;
+  color: white;
+  background-color: var(--green-900);
+  border-radius: 5px;
+}
+
+.bill-input,
+.people-input {
+  display: block;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 /* .currency-icon {
