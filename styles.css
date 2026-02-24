@@ -1,5 +1,5 @@
 :root {
-  --primary-green-400: hsl(172, 67%, 45%);
+  --primary-green-400: #26c0ab;
   --green-900: hsl(183, 100%, 15%);
   --grey-500: hsl(186, 14%, 43%);
   --grey-400: hsl(184, 14%, 56%);
@@ -72,7 +72,7 @@ h1 {
   display: flex;
   flex-direction: column;
   text-align: left;
-  color: var(--green-900);
+  color: var(--grey-500);
   background-color: white;
   padding: 1rem 2rem;
   border-radius: 15px 15px 0 0;
@@ -88,18 +88,34 @@ h1 {
   color: white;
   padding: 1.5rem;
   border-radius: 15px;
+  margin-bottom: 1rem;
 }
 
 select {
   font-family: Space Mono;
   color: var(--green-900);
+  border: solid var(--grey-500) 1px;
+  border-radius: 5px;
 }
 
-.select-currency-wrapper,
+select:focus {
+  outline: none;
+  border: 1px solid var(--primary-green-400);
+}
+
 .bill-wrapper,
 .tip-wrapper,
 .people-wrapper {
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+}
+
+.select-currency-wrapper {
+  display: flex;
+  justify-content: right;
+  gap: 5px;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .tip-btns {
@@ -108,21 +124,119 @@ select {
   gap: 1rem;
 }
 
+button:hover {
+  cursor: pointer;
+  background-color: var(--primary-green-400);
+}
+
+.tip-btns button:hover {
+  background-color: var(--primary-green-400);
+}
+
 .tip-btns button {
   font-family: Space Mono;
-  font-size: 1.5rem;
-  padding: 0.5rem 1rem;
+  font-size: 1.3rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
   border: none;
-  color: white;
+  color: var(--grey-50);
   background-color: var(--green-900);
   border-radius: 5px;
 }
 
-.bill-input,
-.people-input {
+input {
   display: block;
+  text-align: right;
+  background-color: var(--grey-50);
+  border: none;
+  font-family: Space Mono;
+  font-weight: 600;
+  color: var(--green-900);
   width: 100%;
   box-sizing: border-box;
+  font-size: 1.3rem;
+  padding: 0.3rem 1rem;
+  border-radius: 5px;
+}
+
+.bill-input {
+  background-image: url("./images/icon-krone.svg");
+  background-repeat: no-repeat;
+  background-size: 17px;
+  background-position-y: 12px;
+  background-position-x: 15px;
+}
+
+.people-input {
+  background-image: url("./images/icon-person.svg");
+  background-repeat: no-repeat;
+  background-size: 12px;
+  background-position-y: 12px;
+  background-position-x: 15px;
+}
+
+input:focus {
+  outline: 2px solid var(--primary-green-400);
+}
+
+.custom-input::placeholder {
+  color: var(--grey-500);
+  font-weight: 600;
+}
+
+.currency-label {
+  font-weight: 600;
+}
+
+.bill-label,
+.tip-label,
+.people-label {
+  display: inline-block;
+  margin-bottom: 0.7rem;
+  font-weight: 600;
+}
+
+.amount {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--grey-50);
+}
+
+.person {
+  font-size: 0.8rem;
+  color: var(--grey-400);
+}
+
+.amount-number {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--primary-green-400);
+}
+
+.amount-result {
+  display: flex;
+  flex-direction: row-reverse;
+  gap: 5px;
+  align-items: center;
+}
+
+.tip-amount-wrapper,
+.total-amount-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.reset-btn {
+  width: 100%;
+  font-family: Space Mono;
+  font-size: 1.2rem;
+  font-weight: 600;
+  padding: 0.3rem 1rem;
+  border: none;
+  color: var(--green-900);
+  background-color: hsl(183, 79%, 24%);
+  border-radius: 5px;
 }
 
 /* .currency-icon {

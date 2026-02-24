@@ -30,55 +30,71 @@
       <section class="app-container">
         <form id="calc-form" action=" /" method="get" class="input-box">
           <div class="select-currency-wrapper">
-            <label for="currency-select">Currency</label>
+            <label for="currency-select" class="currency-label">Currency</label>
             <select name="currency" id="currency-select">
-              <option value="NOK">NOK</option>
-              <option value="EUR">EUR</option>
-              <option value="USD">USD</option>
+              <option id="NOK" value="NOK">NOK</option>
+              <option id="EUR" value="EUR">EUR</option>
+              <option id="USD" value="USD">USD</option>
             </select>
           </div>
           <div class="bill-wrapper">
-            <label for="bill-input">Bill</label> <br />
+            <label for="bill-input" class="bill-label">Bill</label> <br />
             <input id="bill-input" class="bill-input" type="text" />
           </div>
           <div class="tip-wrapper">
-            <p>Select Tip %</p>
+            <p class="tip-label">Select Tip %</p>
             <div class="tip-btns">
               <button>5%</button> <button>10%</button> <button>15%</button>
               <button>25%</button> <button>50%</button>
-              <input type="text" placeholder="custom" />
+              <input
+                id="custom-input"
+                class="custom-input"
+                type="text"
+                placeholder="Custom"
+              />
             </div>
           </div>
           <div class="people-wrapper">
-            <label for="people-input">Number of People</label> <br />
+            <label for="people-input" class="people-label"
+              >Number of People</label
+            >
+            <br />
             <input id="people-input" class="people-input" type="text" />
           </div>
         </form>
 
         <div class="output-box">
           <div class="tip-amount-wrapper">
-            <p>Tip Amount</p>
-            <p>/ person</p>
-            <img
-              class="currency-icon"
-              src="./images/icon-krone.svg"
-              alt="dollar icon"
-              width="20px"
-            />
-            <p class="amount-number">0</p>
+            <div class="text-person">
+              <p class="amount">Tip Amount</p>
+              <p class="person">/ person</p>
+            </div>
+            <div class="amount-result">
+              <img
+                class="currency-icon"
+                src="./images/icon-krone-green.svg"
+                alt="dollar icon"
+                width="23px"
+              />
+              <p class="amount-number">30</p>
+            </div>
           </div>
           <div class="total-amount-wrapper">
-            <p>Total</p>
-            <p>/ person</p>
-            <img
-              class="currency-icon"
-              src="./images/icon-krone.svg"
-              alt="dollar icon"
-              width="20px"
-            />
-            <p class="amount-number">0</p>
+            <div class="text-person">
+              <p class="amount">Total</p>
+              <p class="person">/ person</p>
+            </div>
+            <div class="amount-result">
+              <img
+                class="currency-icon"
+                src="./images/icon-krone-green.svg"
+                alt="dollar icon"
+                width="23px"
+              />
+              <p class="amount-number">350</p>
+            </div>
           </div>
-          <button class="reset-btn">Reset</button>
+          <button class="reset-btn">RESET</button>
         </div>
       </section>
     </main>
