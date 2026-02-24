@@ -28,7 +28,13 @@
         TTER
       </h1>
       <section class="app-container">
-        <form id="calc-form" action=" /" method="get" class="input-box">
+        <form
+          id="calc-form"
+          action=" /"
+          method="get"
+          class="input-box"
+          novalidate
+        >
           <div class="select-currency-wrapper">
             <label for="currency-select" class="currency-label">Currency</label>
             <select name="currency" id="currency-select">
@@ -44,8 +50,11 @@
           <div class="tip-wrapper">
             <p class="tip-label">Select Tip %</p>
             <div class="tip-btns">
-              <button>5%</button> <button>10%</button> <button>15%</button>
-              <button>25%</button> <button>50%</button>
+              <button type="button" id="percent-5" value="5">5%</button>
+              <button type="button" id="percent-10" value="10">10%</button>
+              <button type="button" id="percent-15" value="15">15%</button>
+              <button type="button" id="percent-25" value="25">25%</button>
+              <button type="button" id="percent-50" value="50">50%</button>
               <input
                 id="custom-input"
                 class="custom-input"
@@ -71,10 +80,22 @@
             </div>
             <div class="amount-result">
               <img
-                class="currency-icon"
+                class="krone-icon"
                 src="./images/icon-krone-green.svg"
-                alt="dollar icon"
+                alt="krone icon"
                 width="23px"
+              />
+              <img
+                class="euro-icon hidden"
+                src="./images/icon-euro-green.svg"
+                alt="euro icon"
+                width="23px"
+              />
+              <img
+                class="dollar-icon hidden"
+                src="./images/icon-dollar-green.svg"
+                alt="dollar icon"
+                width="17px"
               />
               <p class="amount-number">30</p>
             </div>
@@ -86,10 +107,22 @@
             </div>
             <div class="amount-result">
               <img
-                class="currency-icon"
+                class="krone-icon"
                 src="./images/icon-krone-green.svg"
-                alt="dollar icon"
+                alt="krone icon"
                 width="23px"
+              />
+              <img
+                class="euro-icon hidden"
+                src="./images/icon-euro-green.svg"
+                alt="euro icon"
+                width="23px"
+              />
+              <img
+                class="dollar-icon hidden"
+                src="./images/icon-dollar-green.svg"
+                alt="dollar icon"
+                width="17px"
               />
               <p class="amount-number">350</p>
             </div>

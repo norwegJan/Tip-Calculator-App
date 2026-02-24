@@ -1,5 +1,5 @@
 :root {
-  --primary-green-400: #26c0ab;
+  --primary-green-400: hsl(172, 67%, 45%);
   --green-900: hsl(183, 100%, 15%);
   --grey-500: hsl(186, 14%, 43%);
   --grey-400: hsl(184, 14%, 56%);
@@ -239,7 +239,33 @@ input:focus {
   border-radius: 5px;
 }
 
-/* .currency-icon {
-  display: inline;
-  margin-right: 3px;
-} */
+.hidden {
+  display: none;
+}
+
+/* ===== DESKTOP ===== */
+
+@media (min-width: 1024px) {
+  .app-container {
+    max-width: 1000px;
+    display: flex;
+    flex-direction: row;
+    gap: 2rem;
+    padding: 2rem;
+    border-radius: 15px 15px 15px 15px;
+  }
+
+  .input-box {
+    flex: 1;
+  }
+
+  .output-box {
+    flex: 1;
+    margin: 0;
+  }
+
+  .reset-btn {
+    position: relative;
+    bottom: 0;
+  }
+}
