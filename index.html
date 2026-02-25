@@ -45,21 +45,25 @@
           </div>
           <div class="bill-wrapper">
             <label for="bill-input" class="bill-label">Bill</label> <br />
-            <input id="bill-input" class="bill-input" type="text" />
+            <input id="bill-input" class="bill-input" type="number" min="0" />
           </div>
           <div class="tip-wrapper">
             <p class="tip-label">Select Tip %</p>
             <div class="tip-btns">
-              <button type="button" id="percent-5" value="5">5%</button>
-              <button type="button" id="percent-10" value="10">10%</button>
-              <button type="button" id="percent-15" value="15">15%</button>
-              <button type="button" id="percent-25" value="25">25%</button>
-              <button type="button" id="percent-50" value="50">50%</button>
+              <button type="button" id="perc5" value="5">5%</button>
+              <button type="button" id="perc10" value="10">10%</button>
+              <button type="button" id="perc15" value="15">15%</button>
+              <button type="button" id="perc25" value="25">25%</button>
+              <button type="button" id="perc50" value="50">50%</button>
+              <label for="custom-input" class="visually-hidden"
+                >Enter custom percentage</label
+              >
               <input
                 id="custom-input"
                 class="custom-input"
-                type="text"
+                type="number"
                 placeholder="Custom"
+                min="0"
               />
             </div>
           </div>
@@ -68,7 +72,13 @@
               >Number of People</label
             >
             <br />
-            <input id="people-input" class="people-input" type="number" min="1" max="100" />
+            <input
+              id="people-input"
+              class="people-input"
+              type="number"
+              min="1"
+              max="100"
+            />
           </div>
         </form>
 
@@ -78,21 +88,21 @@
               <p class="amount">Tip Amount</p>
               <p class="person">/ person</p>
             </div>
-            <div class="amount-result">
+            <div id="tip-amount-result" class="amount-result">
               <img
-                class="krone-icon"
+                class="currency-icon krone-icon hidden"
                 src="./images/icon-krone-green.svg"
                 alt="krone icon"
                 width="23px"
               />
               <img
-                class="euro-icon hidden"
+                class="currency-icon euro-icon hidden"
                 src="./images/icon-euro-green.svg"
                 alt="euro icon"
                 width="23px"
               />
               <img
-                class="dollar-icon hidden"
+                class="currency-icon dollar-icon hidden"
                 src="./images/icon-dollar-green.svg"
                 alt="dollar icon"
                 width="17px"
@@ -105,21 +115,21 @@
               <p class="amount">Total</p>
               <p class="person">/ person</p>
             </div>
-            <div class="amount-result">
+            <div id="total-amount-result" class="amount-result">
               <img
-                class="krone-icon"
+                class="currency-icon krone-icon hidden"
                 src="./images/icon-krone-green.svg"
                 alt="krone icon"
                 width="23px"
               />
               <img
-                class="euro-icon hidden"
+                class="currency-icon euro-icon hidden"
                 src="./images/icon-euro-green.svg"
                 alt="euro icon"
                 width="23px"
               />
               <img
-                class="dollar-icon hidden"
+                class="currency-icon dollar-icon hidden"
                 src="./images/icon-dollar-green.svg"
                 alt="dollar icon"
                 width="17px"
@@ -127,7 +137,7 @@
               <p class="amount-number">350</p>
             </div>
           </div>
-          <button class="reset-btn">RESET</button>
+          <button type="button" class="reset-btn">RESET</button>
         </div>
       </section>
     </main>

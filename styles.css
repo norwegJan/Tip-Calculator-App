@@ -80,7 +80,6 @@ h1 {
 
 .input-box {
   margin-bottom: 1rem;
-  padding: rem;
 }
 
 .output-box {
@@ -160,11 +159,42 @@ input {
 }
 
 .bill-input {
-  background-image: url("./images/icon-krone.svg");
+  /* background-image: url("./images/icon-krone.svg"); */
   background-repeat: no-repeat;
-  background-size: 17px;
-  background-position-y: 12px;
+  /* background-size: 17px; */
+  /* background-position-y: 12px; */
   background-position-x: 15px;
+}
+
+.nok-bg {
+  background-image: url("./images/icon-krone.svg");
+  background-position-y: 12px;
+  background-size: 17px;
+}
+
+.eur-bg {
+  background-image: url("./images/icon-euro.svg");
+  background-position-y: 12px;
+  background-size: 17px;
+}
+
+.usd-bg {
+  background-image: url("./images/icon-dollar.svg");
+  background-position-y: 9px;
+  background-size: 15px;
+}
+
+.bill-input::-webkit-outer-spin-button,
+.bill-input::-webkit-inner-spin-button,
+.custom-input::-webkit-outer-spin-button,
+.custom-input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.bill-input[type="number"],
+.custom-input[type="number"] {
+  -moz-appearance: textfield;
 }
 
 .people-input {
@@ -183,6 +213,19 @@ input:focus {
   color: var(--grey-500);
   font-weight: 600;
   opacity: 0.4;
+}
+
+.visually-hidden {
+  clip: rect(1px, 1px, 1px, 1px);
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+  margin: -1px;
+  padding: 0;
+  border: 0;
 }
 
 .currency-label {
