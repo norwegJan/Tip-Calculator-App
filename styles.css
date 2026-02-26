@@ -105,7 +105,7 @@ select:focus {
 .bill-wrapper,
 .tip-wrapper,
 .people-wrapper {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.8rem;
   font-size: 0.9rem;
 }
 
@@ -113,7 +113,7 @@ select:focus {
   display: flex;
   justify-content: right;
   gap: 5px;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.7rem;
   font-size: 0.9rem;
 }
 
@@ -130,6 +130,7 @@ button:hover {
 
 .tip-btns button:hover {
   background-color: var(--primary-green-400);
+  color: var(--green-900);
 }
 
 .tip-btns button {
@@ -182,6 +183,12 @@ input {
   background-image: url("./images/icon-dollar.svg");
   background-position-y: 9px;
   background-size: 15px;
+}
+
+.gbp-bg {
+  background-image: url("./images/icon-pound.svg");
+  background-position-y: 12px;
+  background-size: 17px;
 }
 
 .bill-input::-webkit-outer-spin-button,
@@ -240,6 +247,21 @@ input:focus {
   font-weight: 600;
 }
 
+.label-wrapper {
+  margin-bottom: -4px;
+  padding: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.people-error,
+.bill-error {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #fe7d38;
+}
+
 .amount {
   font-size: 0.9rem;
   font-weight: 600;
@@ -259,9 +281,14 @@ input:focus {
 
 .amount-result {
   display: flex;
-  flex-direction: row-reverse;
-  gap: 5px;
+  flex-direction: row;
+  gap: 4px;
   align-items: center;
+}
+
+.icon-before {
+  flex-direction: row-reverse;
+  gap: 2px;
 }
 
 .tip-amount-wrapper,
@@ -287,6 +314,10 @@ input:focus {
   display: none;
 }
 
+.input-error:focus {
+  outline: 2px solid #fe7d38;
+}
+
 /* ===== DESKTOP ===== */
 
 @media (min-width: 1024px) {
@@ -308,8 +339,14 @@ input:focus {
     margin: 0;
   }
 
-  .reset-btn {
+  .result-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* .reset-btn {
     position: relative;
     bottom: 0;
-  }
+  } */
 }

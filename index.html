@@ -41,10 +41,14 @@
               <option id="NOK" value="NOK">NOK</option>
               <option id="EUR" value="EUR">EUR</option>
               <option id="USD" value="USD">USD</option>
+              <option id="GBP" value="GBP">GBP</option>
             </select>
           </div>
           <div class="bill-wrapper">
-            <label for="bill-input" class="bill-label">Bill</label> <br />
+            <div class="label-wrapper">
+              <label for="bill-input" class="bill-label">Bill</label>
+              <p id="bill-error" class="bill-error"></p>
+            </div>
             <input id="bill-input" class="bill-input" type="number" min="0" />
           </div>
           <div class="tip-wrapper">
@@ -68,10 +72,12 @@
             </div>
           </div>
           <div class="people-wrapper">
-            <label for="people-input" class="people-label"
-              >Number of People</label
-            >
-            <br />
+            <div class="label-wrapper">
+              <label for="people-input" class="people-label"
+                >Number of People</label
+              >
+              <p id="people-error" class="people-error"></p>
+            </div>
             <input
               id="people-input"
               class="people-input"
@@ -83,58 +89,72 @@
         </form>
 
         <div class="output-box">
-          <div class="tip-amount-wrapper">
-            <div class="text-person">
-              <p class="amount">Tip Amount</p>
-              <p class="person">/ person</p>
+          <div class="result-wrapper">
+            <div class="tip-amount-wrapper">
+              <div class="text-person">
+                <p class="amount">Tip Amount</p>
+                <p class="person">/ person</p>
+              </div>
+              <div id="tip-amount-result" class="amount-result">
+                <p class="amount-number">0</p>
+                <img
+                  class="currency-icon krone-icon hidden"
+                  src="./images/icon-krone-green.svg"
+                  alt="krone icon"
+                  width="23px"
+                />
+                <img
+                  class="currency-icon euro-icon hidden"
+                  src="./images/icon-euro-green.svg"
+                  alt="euro icon"
+                  width="23px"
+                />
+                <img
+                  class="currency-icon dollar-icon hidden"
+                  src="./images/icon-dollar-green.svg"
+                  alt="dollar icon"
+                  width="17px"
+                />
+                <img
+                  class="currency-icon pound-icon hidden"
+                  src="./images/icon-pound-green.svg"
+                  alt="pound icon"
+                  width="21px"
+                />
+              </div>
             </div>
-            <div id="tip-amount-result" class="amount-result">
-              <img
-                class="currency-icon krone-icon hidden"
-                src="./images/icon-krone-green.svg"
-                alt="krone icon"
-                width="23px"
-              />
-              <img
-                class="currency-icon euro-icon hidden"
-                src="./images/icon-euro-green.svg"
-                alt="euro icon"
-                width="23px"
-              />
-              <img
-                class="currency-icon dollar-icon hidden"
-                src="./images/icon-dollar-green.svg"
-                alt="dollar icon"
-                width="17px"
-              />
-              <p class="amount-number">30</p>
-            </div>
-          </div>
-          <div class="total-amount-wrapper">
-            <div class="text-person">
-              <p class="amount">Total</p>
-              <p class="person">/ person</p>
-            </div>
-            <div id="total-amount-result" class="amount-result">
-              <img
-                class="currency-icon krone-icon hidden"
-                src="./images/icon-krone-green.svg"
-                alt="krone icon"
-                width="23px"
-              />
-              <img
-                class="currency-icon euro-icon hidden"
-                src="./images/icon-euro-green.svg"
-                alt="euro icon"
-                width="23px"
-              />
-              <img
-                class="currency-icon dollar-icon hidden"
-                src="./images/icon-dollar-green.svg"
-                alt="dollar icon"
-                width="17px"
-              />
-              <p class="amount-number">350</p>
+            <div class="total-amount-wrapper">
+              <div class="text-person">
+                <p class="amount">Total</p>
+                <p class="person">/ person</p>
+              </div>
+              <div id="total-amount-result" class="amount-result">
+                <p class="amount-number">0</p>
+                <img
+                  class="currency-icon krone-icon hidden"
+                  src="./images/icon-krone-green.svg"
+                  alt="krone icon"
+                  width="23px"
+                />
+                <img
+                  class="currency-icon euro-icon hidden"
+                  src="./images/icon-euro-green.svg"
+                  alt="euro icon"
+                  width="23px"
+                />
+                <img
+                  class="currency-icon dollar-icon hidden"
+                  src="./images/icon-dollar-green.svg"
+                  alt="dollar icon"
+                  width="17px"
+                />
+                <img
+                  class="currency-icon pound-icon hidden"
+                  src="./images/icon-pound-green.svg"
+                  alt="pound icon"
+                  width="21px"
+                />
+              </div>
             </div>
           </div>
           <button type="button" class="reset-btn">RESET</button>
