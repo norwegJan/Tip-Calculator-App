@@ -274,7 +274,7 @@ input:focus {
 }
 
 .amount-number {
-  font-size: 1.8rem;
+  font-size: 2rem;
   font-weight: 600;
   color: var(--primary-green-400);
 }
@@ -282,7 +282,7 @@ input:focus {
 .amount-result {
   display: flex;
   flex-direction: row;
-  gap: 4px;
+  gap: 3px;
   align-items: center;
 }
 

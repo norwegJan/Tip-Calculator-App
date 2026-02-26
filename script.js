@@ -6,6 +6,10 @@ const resultDisplays = document.querySelectorAll(".amount-result");
 
 tipCalculator.addEventListener("submit", (e) => {
   e.preventDefault();
+
+  console.log("submit fired");
+
+  calcInput();
 });
 
 currencies.addEventListener("change", setCurrency);
@@ -50,6 +54,19 @@ function setCurrency() {
   }
 }
 
+function calcInput() {
+  const billValue = billInput.value.trim();
+
+  if (billValue === "") {
+    console.log("Please enter valid number!");
+    return;
+  } else console.log(`The bill amount is ${billInput.value}`);
+}
+
 setCurrency();
 
-console.log(currencyIcons);
+billInput.addEventListener("keydown", (e) => {
+  if (e.key === "Enter") {
+    console.log(`The bill amount is ${billInput.value}`);
+  }
+});
