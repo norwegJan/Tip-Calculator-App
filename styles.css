@@ -288,7 +288,7 @@ input:focus {
 
 .icon-before {
   flex-direction: row-reverse;
-  gap: 2px;
+  gap: 1px;
 }
 
 .tip-amount-wrapper,
