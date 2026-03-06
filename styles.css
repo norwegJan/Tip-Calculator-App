@@ -1,5 +1,6 @@
 :root {
   --primary-green-400: hsl(172, 67%, 45%);
+  --active-green: hsl(173, 61%, 77%);
   --green-900: hsl(183, 100%, 15%);
   --grey-500: hsl(186, 14%, 43%);
   --grey-400: hsl(184, 14%, 56%);
@@ -192,15 +193,12 @@ input {
 }
 
 .bill-input::-webkit-outer-spin-button,
-.bill-input::-webkit-inner-spin-button,
-.custom-input::-webkit-outer-spin-button,
-.custom-input::-webkit-inner-spin-button {
+.bill-input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-.bill-input[type="number"],
-.custom-input[type="number"] {
+.bill-input[type="number"] {
   -moz-appearance: textfield;
 }
 
@@ -216,8 +214,9 @@ input:focus {
   outline: 2px solid var(--primary-green-400);
 }
 
-.custom-input::placeholder {
+input::placeholder {
   color: var(--grey-500);
+  font-size: 1.1rem;
   font-weight: 600;
   opacity: 0.4;
 }
@@ -288,7 +287,7 @@ input:focus {
 
 .icon-before {
   flex-direction: row-reverse;
-  gap: 1px;
+  gap: 0px;
 }
 
 .tip-amount-wrapper,
@@ -314,7 +313,16 @@ input:focus {
   display: none;
 }
 
-.input-error:focus {
+.active-state {
+  background-color: var(--active-green) !important;
+  color: var(--green-900) !important;
+}
+
+input:not(:placeholder-shown):invalid {
+  outline: 2px solid #fe7d38;
+}
+
+.error-state:focus {
   outline: 2px solid #fe7d38;
 }
 
