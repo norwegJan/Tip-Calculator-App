@@ -14,6 +14,8 @@ const peopleInput = document.querySelector("#people-input");
 const tipAmount = document.querySelector("#tip-amount-result");
 const totalAmount = document.querySelector("#total-amount-result");
 
+const resetBtn = document.querySelector("#reset-btn");
+
 let selectedTipValue = 0;
 
 // ADD EVENT LISTENERS
@@ -29,13 +31,21 @@ peopleInput.addEventListener("input", updateCalcState);
 
 tipPresetInput.forEach((button) => {
   button.addEventListener("click", (e) => {
+    tipPresetInput.forEach((button) => button.classList.remove("active-state"));
+    e.currentTarget.classList.add("active-state");
     setTipValue("preset", Number(e.currentTarget.value));
   });
 });
 
-tipCustomInput.addEventListener("input", () =>
-  setTipValue("custom", tipCustomInput.valueAsNumber),
-);
+tipCustomInput.addEventListener("focus", () => {
+  tipPresetInput.forEach((button) => button.classList.remove("active-state"));
+});
+
+tipCustomInput.addEventListener("input", () => {
+  setTipValue("custom", tipCustomInput.valueAsNumber);
+});
+
+resetBtn.addEventListener("click", resetCalcState);
 
 // DECLARE FUNCTIONS
 
@@ -86,7 +96,7 @@ function setTipValue(source, value) {
     selectedTipValue = value;
     tipCustomInput.value = "";
   } else if (source === "custom") {
-    if (Number.isFinite(value) && value >= 0) {
+    if (Number.isInteger(value) && value >= 0) {
       selectedTipValue = value;
     } else {
       selectedTipValue = 0;
@@ -106,8 +116,8 @@ function updateCalcState() {
   // console.log(` The # of people is ${peopleValue}`);
 
   if (invalidBill || invalidPeople) {
-    tipAmount.textContent = "0";
-    totalAmount.textContent = "0";
+    tipAmount.textContent = "0.00";
+    totalAmount.textContent = "0.00";
     return;
   }
   const tipPerPerson = (billValue * (selectedTipValue / 100)) / peopleValue;
@@ -115,6 +125,14 @@ function updateCalcState() {
     (billValue * (1 + selectedTipValue / 100)) / peopleValue;
   tipAmount.textContent = tipPerPerson.toFixed(2);
   totalAmount.textContent = totalPerPerson.toFixed(2);
+}
+
+function resetCalcState() {
+  tipCalculator.reset();
+  selectedTipValue = 0;
+  tipPresetInput.forEach((button) => button.classList.remove("active-state"));
+  tipAmount.textContent = "0.00";
+  totalAmount.textContent = "0.00";
 }
 
 setCurrency();
