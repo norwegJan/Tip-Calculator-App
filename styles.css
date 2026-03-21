@@ -27,6 +27,7 @@ p,
 blockquote {
   margin-block-end: 0;
   margin: 0;
+  word-spacing: -4px;
 }
 
 img,
@@ -62,7 +63,8 @@ body {
 h1 {
   font-size: 1.7rem;
   line-height: 30px;
-  font-weight: 400;
+  font-weight: 600;
+  letter-spacing: 7px;
   color: var(--green-900);
   margin-bottom: 3rem;
 }
@@ -256,9 +258,21 @@ input::placeholder {
 
 .people-error,
 .bill-error {
-  font-size: 0.8rem;
+  font-size: 0.7rem;
   font-weight: 600;
   color: #fe7d38;
+  transform: translateY(4px);
+}
+
+.custom-error {
+  grid-column: 2;
+  justify-self: start;
+  text-align: left;
+  font-size: 0.7rem;
+  font-weight: 600;
+  height: 1rem;
+  color: #fe7d38;
+  margin-top: -0.6rem;
 }
 
 .amount {
@@ -322,6 +336,7 @@ input:not(:placeholder-shown):invalid {
   outline: 2px solid #fe7d38;
 }
 
+.error-state,
 .error-state:focus {
   outline: 2px solid #fe7d38;
 }
@@ -345,12 +360,27 @@ input:not(:placeholder-shown):invalid {
   .output-box {
     flex: 1 1 0;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   .result-wrapper {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    gap: 1.5rem;
+  }
+
+  .amount {
+    font-size: 1.4rem;
+  }
+
+  .person {
+    font-size: 1rem;
+  }
+
+  .amount-number {
+    font-size: 2.5rem;
   }
 
   /* .reset-btn {

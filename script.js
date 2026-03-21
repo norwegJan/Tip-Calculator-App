@@ -11,12 +11,23 @@ const tipPresetInput = document.querySelectorAll(".percentBtn");
 const tipCustomInput = document.querySelector("#custom-input");
 const peopleInput = document.querySelector("#people-input");
 
+const billError = document.querySelector("#bill-error");
+const peopleError = document.querySelector("#people-error");
+const customError = document.querySelector("#custom-error");
+
 const tipAmount = document.querySelector("#tip-amount-result");
 const totalAmount = document.querySelector("#total-amount-result");
 
 const resetBtn = document.querySelector("#reset-btn");
 
 let selectedTipValue = 0;
+
+let billTouched = false;
+let billDirty = false;
+let peopleTouched = false;
+let peopleDirty = false;
+let customTouched = false;
+let customDirty = false;
 
 // ADD EVENT LISTENERS
 
@@ -26,22 +37,47 @@ tipCalculator.addEventListener("submit", (e) => {
 
 currencies.addEventListener("change", setCurrency);
 
-billInput.addEventListener("input", updateCalcState);
-peopleInput.addEventListener("input", updateCalcState);
+billInput.addEventListener("blur", (e) => {
+  billTouched = true;
+});
+
+peopleInput.addEventListener("blur", (e) => {
+  peopleTouched = true;
+});
+
+billInput.addEventListener("input", (e) => {
+  billDirty = true;
+  updateCalcState();
+});
+
+peopleInput.addEventListener("input", () => {
+  peopleDirty = true;
+  updateCalcState();
+});
 
 tipPresetInput.forEach((button) => {
   button.addEventListener("click", (e) => {
     tipPresetInput.forEach((button) => button.classList.remove("active-state"));
     e.currentTarget.classList.add("active-state");
     setTipValue("preset", Number(e.currentTarget.value));
+    customError.textContent = "";
+    tipCustomInput.classList.remove("error-state");
+    customTouched = false;
+    customDirty = false;
   });
 });
 
 tipCustomInput.addEventListener("focus", () => {
   tipPresetInput.forEach((button) => button.classList.remove("active-state"));
+  selectedTipValue = 0;
+});
+
+tipCustomInput.addEventListener("blur", (e) => {
+  customTouched = true;
 });
 
 tipCustomInput.addEventListener("input", () => {
+  customDirty = true;
   setTipValue("custom", tipCustomInput.valueAsNumber);
 });
 
@@ -96,7 +132,7 @@ function setTipValue(source, value) {
     selectedTipValue = value;
     tipCustomInput.value = "";
   } else if (source === "custom") {
-    if (Number.isInteger(value) && value >= 0) {
+    if (Number.isInteger(value) && value > 0 && value <= 100) {
       selectedTipValue = value;
     } else {
       selectedTipValue = 0;
@@ -105,26 +141,55 @@ function setTipValue(source, value) {
   updateCalcState();
 }
 
+function setError(inputEl, errorEl, showError, message) {
+  if (showError) {
+    errorEl.textContent = message;
+    inputEl.classList.add("error-state");
+  } else {
+    errorEl.textContent = "";
+    inputEl.classList.remove("error-state");
+  }
+}
+
 function updateCalcState() {
   const billValue = billInput.valueAsNumber;
   const peopleValue = peopleInput.valueAsNumber;
+  const customValue = tipCustomInput.valueAsNumber;
   const invalidBill = !Number.isFinite(billValue) || billValue <= 0;
   const invalidPeople = !Number.isFinite(peopleValue) || peopleValue <= 0;
+  const invalidCustom =
+    !Number.isFinite(customValue) || customValue <= 0 || customValue > 100;
+  const showBillError = invalidBill && billDirty;
+  const showPeopleError = invalidPeople && peopleDirty;
+  // prettier-ignore
+  const customInUse = (tipCustomInput.value.trim() !== "") || (customTouched || customDirty);
+  const showCustomError = customInUse && invalidCustom && customDirty;
 
-  // console.log(`The selected tip value is ${selectedTipValue}`);
-  // console.log(`The bill amount is ${billValue}`);
-  // console.log(` The # of people is ${peopleValue}`);
+  setError(
+    billInput,
+    billError,
+    showBillError,
+    "Please enter valid number over 0",
+  );
+  setError(peopleInput, peopleError, showPeopleError, "Number must be over 0");
+  setError(
+    tipCustomInput,
+    customError,
+    showCustomError,
+    "Number must be between 1 and 100",
+  );
 
   if (invalidBill || invalidPeople) {
     tipAmount.textContent = "0.00";
     totalAmount.textContent = "0.00";
     return;
+  } else {
+    const tipPerPerson = (billValue * (selectedTipValue / 100)) / peopleValue;
+    const totalPerPerson =
+      (billValue * (1 + selectedTipValue / 100)) / peopleValue;
+    tipAmount.textContent = tipPerPerson.toFixed(2);
+    totalAmount.textContent = totalPerPerson.toFixed(2);
   }
-  const tipPerPerson = (billValue * (selectedTipValue / 100)) / peopleValue;
-  const totalPerPerson =
-    (billValue * (1 + selectedTipValue / 100)) / peopleValue;
-  tipAmount.textContent = tipPerPerson.toFixed(2);
-  totalAmount.textContent = totalPerPerson.toFixed(2);
 }
 
 function resetCalcState() {
@@ -133,15 +198,19 @@ function resetCalcState() {
   tipPresetInput.forEach((button) => button.classList.remove("active-state"));
   tipAmount.textContent = "0.00";
   totalAmount.textContent = "0.00";
+  billError.textContent = "";
+  peopleError.textContent = "";
+  customError.textContent = "";
+  tipCustomInput.classList.remove("error-state");
+  billInput.classList.remove("error-state");
+  peopleInput.classList.remove("error-state");
+  billTouched = false;
+  billDirty = false;
+  peopleTouched = false;
+  peopleDirty = false;
+  customTouched = false;
+  customDirty = false;
+  setCurrency();
 }
 
-setCurrency();
-updateCalcState();
-
-// console.log(`The selected tip value is ${selectedTipValue}`);
-
-/* billInput.addEventListener("keydown", (e) => {
-  if (e.key === "Enter") {
-    console.log(`The bill amount is ${billInput.value}`);
-  }
-}); */
+resetCalcState();
