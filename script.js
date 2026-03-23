@@ -22,11 +22,8 @@ const resetBtn = document.querySelector("#reset-btn");
 
 let selectedTipValue = 0;
 
-let billTouched = false;
 let billDirty = false;
-let peopleTouched = false;
 let peopleDirty = false;
-let customTouched = false;
 let customDirty = false;
 
 // ADD EVENT LISTENERS
@@ -35,14 +32,10 @@ tipCalculator.addEventListener("submit", (e) => {
   e.preventDefault();
 });
 
-currencies.addEventListener("change", setCurrency);
-
-billInput.addEventListener("blur", (e) => {
-  billTouched = true;
-});
-
-peopleInput.addEventListener("blur", (e) => {
-  peopleTouched = true;
+currencies.addEventListener("change", (e) => {
+  setCurrency();
+  updateCalcState();
+  localStorage.setItem("selectedCurrency", currencies.value);
 });
 
 billInput.addEventListener("input", (e) => {
@@ -57,23 +50,26 @@ peopleInput.addEventListener("input", () => {
 
 tipPresetInput.forEach((button) => {
   button.addEventListener("click", (e) => {
-    tipPresetInput.forEach((button) => button.classList.remove("active-state"));
+    tipPresetInput.forEach((button) => {
+      button.classList.remove("active-state");
+      button.setAttribute("aria-pressed", "false");
+    });
     e.currentTarget.classList.add("active-state");
+    e.currentTarget.setAttribute("aria-pressed", "true");
     setTipValue("preset", Number(e.currentTarget.value));
     customError.textContent = "";
     tipCustomInput.classList.remove("error-state");
-    customTouched = false;
     customDirty = false;
   });
 });
 
 tipCustomInput.addEventListener("focus", () => {
-  tipPresetInput.forEach((button) => button.classList.remove("active-state"));
+  tipPresetInput.forEach((button) => {
+    button.classList.remove("active-state");
+    button.setAttribute("aria-pressed", "false");
+  });
   selectedTipValue = 0;
-});
-
-tipCustomInput.addEventListener("blur", (e) => {
-  customTouched = true;
+  updateCalcState();
 });
 
 tipCustomInput.addEventListener("input", () => {
@@ -145,9 +141,11 @@ function setError(inputEl, errorEl, showError, message) {
   if (showError) {
     errorEl.textContent = message;
     inputEl.classList.add("error-state");
+    inputEl.setAttribute("aria-invalid", "true");
   } else {
     errorEl.textContent = "";
     inputEl.classList.remove("error-state");
+    inputEl.removeAttribute("aria-invalid");
   }
 }
 
@@ -158,59 +156,93 @@ function updateCalcState() {
   const invalidBill = !Number.isFinite(billValue) || billValue <= 0;
   const invalidPeople = !Number.isFinite(peopleValue) || peopleValue <= 0;
   const invalidCustom =
-    !Number.isFinite(customValue) || customValue <= 0 || customValue > 100;
+    !Number.isInteger(customValue) || customValue <= 0 || customValue > 100;
   const showBillError = invalidBill && billDirty;
   const showPeopleError = invalidPeople && peopleDirty;
   // prettier-ignore
-  const customInUse = (tipCustomInput.value.trim() !== "") || (customTouched || customDirty);
+  const customInUse = (tipCustomInput.value.trim() !== "") || customDirty;
   const showCustomError = customInUse && invalidCustom && customDirty;
 
-  setError(
-    billInput,
-    billError,
-    showBillError,
-    "Please enter valid number over 0",
-  );
+  setError(billInput, billError, showBillError, "Please enter number over 0");
   setError(peopleInput, peopleError, showPeopleError, "Number must be over 0");
   setError(
     tipCustomInput,
     customError,
     showCustomError,
-    "Number must be between 1 and 100",
+    "Must be a whole number between 1 and 100",
   );
 
   if (invalidBill || invalidPeople) {
-    tipAmount.textContent = "0.00";
-    totalAmount.textContent = "0.00";
+    tipAmount.textContent = formatAmount(0);
+    totalAmount.textContent = formatAmount(0);
     return;
   } else {
     const tipPerPerson = (billValue * (selectedTipValue / 100)) / peopleValue;
     const totalPerPerson =
       (billValue * (1 + selectedTipValue / 100)) / peopleValue;
-    tipAmount.textContent = tipPerPerson.toFixed(2);
-    totalAmount.textContent = totalPerPerson.toFixed(2);
+    tipAmount.textContent = formatAmount(tipPerPerson);
+    totalAmount.textContent = formatAmount(totalPerPerson);
   }
 }
 
+function formatAmount(value) {
+  const selectedCurrency = currencies.value;
+  let locale = "";
+  switch (selectedCurrency) {
+    case "NOK":
+      locale = "nb-NO";
+      break;
+    case "EUR":
+      locale = "de-DE";
+      break;
+    case "USD":
+      locale = "en-US";
+      break;
+    case "GBP":
+      locale = "en-GB";
+      break;
+    default:
+      locale = "nb-NO";
+  }
+  return new Intl.NumberFormat(locale, {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(value);
+}
+
 function resetCalcState() {
-  tipCalculator.reset();
+  billInput.value = "";
+  peopleInput.value = "";
+  tipCustomInput.value = "";
   selectedTipValue = 0;
-  tipPresetInput.forEach((button) => button.classList.remove("active-state"));
-  tipAmount.textContent = "0.00";
-  totalAmount.textContent = "0.00";
+  tipPresetInput.forEach((button) => {
+    button.classList.remove("active-state");
+    button.setAttribute("aria-pressed", "false");
+  });
+  tipAmount.textContent = formatAmount(0);
+  totalAmount.textContent = formatAmount(0);
   billError.textContent = "";
   peopleError.textContent = "";
   customError.textContent = "";
   tipCustomInput.classList.remove("error-state");
   billInput.classList.remove("error-state");
   peopleInput.classList.remove("error-state");
-  billTouched = false;
   billDirty = false;
-  peopleTouched = false;
   peopleDirty = false;
-  customTouched = false;
   customDirty = false;
+}
+
+function getCurrency() {
+  const savedValue = localStorage.getItem("selectedCurrency");
+  const currencyList = ["NOK", "EUR", "USD", "GBP"];
+  if (currencyList.includes(savedValue)) {
+    currencies.value = savedValue;
+  } else {
+    currencies.value = "NOK";
+  }
   setCurrency();
+  updateCalcState();
 }
 
 resetCalcState();
+getCurrency();

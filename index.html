@@ -47,7 +47,7 @@
           <div class="bill-wrapper">
             <div class="label-wrapper">
               <label for="bill-input" class="bill-label">Bill</label>
-              <p id="bill-error" class="bill-error"></p>
+              <p id="bill-error" class="bill-error" aria-live="polite"></p>
             </div>
             <input
               id="bill-input"
@@ -56,25 +56,60 @@
               min="0"
               step="0.01"
               placeholder="enter amount"
+              aria-describedby="bill-error"
               required
             />
           </div>
           <div class="tip-wrapper">
             <p class="tip-label">Select Tip %</p>
-            <div class="tip-btns">
-              <button type="button" class="percentBtn" id="perc5" value="5">
+            <div
+              class="tip-btns"
+              role="group"
+              aria-label="tip-percentage-inputs"
+            >
+              <button
+                type="button"
+                class="percentBtn"
+                id="perc5"
+                value="5"
+                aria-pressed="false"
+              >
                 5%
               </button>
-              <button type="button" class="percentBtn" id="perc10" value="10">
+              <button
+                type="button"
+                class="percentBtn"
+                id="perc10"
+                value="10"
+                aria-pressed="false"
+              >
                 10%
               </button>
-              <button type="button" class="percentBtn" id="perc15" value="15">
+              <button
+                type="button"
+                class="percentBtn"
+                id="perc15"
+                value="15"
+                aria-pressed="false"
+              >
                 15%
               </button>
-              <button type="button" class="percentBtn" id="perc25" value="25">
+              <button
+                type="button"
+                class="percentBtn"
+                id="perc25"
+                value="25"
+                aria-pressed="false"
+              >
                 25%
               </button>
-              <button type="button" class="percentBtn" id="perc50" value="50">
+              <button
+                type="button"
+                class="percentBtn"
+                id="perc50"
+                value="50"
+                aria-pressed="false"
+              >
                 50%
               </button>
               <label for="custom-input" class="visually-hidden"
@@ -88,8 +123,9 @@
                 min="0"
                 max="100"
                 step="1"
+                aria-describedby="custom-error"
               />
-              <p id="custom-error" class="custom-error"></p>
+              <p id="custom-error" class="custom-error" aria-live="polite"></p>
             </div>
           </div>
           <div class="people-wrapper">
@@ -97,7 +133,7 @@
               <label for="people-input" class="people-label"
                 >Number of People</label
               >
-              <p id="people-error" class="people-error"></p>
+              <p id="people-error" class="people-error" aria-live="polite"></p>
             </div>
             <input
               id="people-input"
@@ -107,6 +143,7 @@
               max="999"
               step="1"
               placeholder="how many?"
+              aria-describedby="people-error"
               required
             />
           </div>
@@ -120,30 +157,40 @@
                 <p class="person">/ person</p>
               </div>
               <div class="amount-result">
-                <p id="tip-amount-result" class="amount-number">0.00</p>
+                <p
+                  id="tip-amount-result"
+                  class="amount-number"
+                  aria-live="polite"
+                >
+                  0.00
+                </p>
                 <img
                   class="currency-icon krone-icon hidden"
                   src="./images/icon-krone-green.svg"
-                  alt="krone icon"
+                  alt=""
                   width="23px"
+                  aria-hidden="true"
                 />
                 <img
                   class="currency-icon euro-icon hidden"
                   src="./images/icon-euro-green.svg"
-                  alt="euro icon"
+                  alt=""
                   width="23px"
+                  aria-hidden="true"
                 />
                 <img
                   class="currency-icon dollar-icon hidden"
                   src="./images/icon-dollar-green.svg"
-                  alt="dollar icon"
+                  alt=""
                   width="19px"
+                  aria-hidden="true"
                 />
                 <img
                   class="currency-icon pound-icon hidden"
                   src="./images/icon-pound-green.svg"
-                  alt="pound icon"
+                  alt=""
                   width="22px"
+                  aria-hidden="true"
                 />
               </div>
             </div>
@@ -153,30 +200,40 @@
                 <p class="person">/ person</p>
               </div>
               <div class="amount-result">
-                <p id="total-amount-result" class="amount-number">0.00</p>
+                <p
+                  id="total-amount-result"
+                  class="amount-number"
+                  aria-live="polite"
+                >
+                  0.00
+                </p>
                 <img
                   class="currency-icon krone-icon hidden"
                   src="./images/icon-krone-green.svg"
-                  alt="krone icon"
+                  alt=""
                   width="23px"
+                  aria-hidden="true"
                 />
                 <img
                   class="currency-icon euro-icon hidden"
                   src="./images/icon-euro-green.svg"
-                  alt="euro icon"
+                  alt=""
                   width="23px"
+                  aria-hidden="true"
                 />
                 <img
                   class="currency-icon dollar-icon hidden"
                   src="./images/icon-dollar-green.svg"
-                  alt="dollar icon"
+                  alt=""
                   width="19px"
+                  aria-hidden="true"
                 />
                 <img
                   class="currency-icon pound-icon hidden"
                   src="./images/icon-pound-green.svg"
-                  alt="pound icon"
+                  alt=""
                   width="22px"
+                  aria-hidden="true"
                 />
               </div>
             </div>
@@ -186,13 +243,22 @@
       </section>
     </main>
 
-    <!-- <footer>
+    <footer>
       <div class="attribution">
         Challenge by
-        <a href="https://www.frontendmentor.io?ref=challenge" target="_blank"
+        <a
+          href="https://www.frontendmentor.io?ref=challenge"
+          rel="noopener noreferrer"
+          target="_blank"
           >Frontend Mentor</a
-        >. Coded by <a href="#">Your Name Here</a>.
+        >. Coded by
+        <a
+          href="https://github.com/norwegJan"
+          rel="noopener noreferrer"
+          target="_blank"
+          >norwegJan</a
+        >.
       </div>
-    </footer> -->
+    </footer>
   </body>
 </html>
